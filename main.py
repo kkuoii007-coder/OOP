@@ -4,34 +4,32 @@ class Task:
         self.deadline = deadline
         self.stat = stat
 
+# Список для хранения всех задач — раздел 2 "Коллекции (списки)"
+tasks_list = []
 
-# ФУНКЦИЯ ДЛЯ ДОБАВЛЕНИЯ ЗАДАЧ
-tasks = []  # сюда будем складывать все созданные задачи
+# Функция для добавления новой задачи
+def add_task(description, deadline):
+    new_task = Task(description, deadline, False)  # Создание объекта — раздел "Классы и объекты"
+    tasks_list.append(new_task)  # Добавление в список — раздел 2 "Коллекции"
+    print(f"Задача '{description}' добавлена!")  # F-строка — раздел 1
 
-def add_task(description, deadline, stat=False):
-    task = Task(description, deadline, stat)  # создаём объект Task
-    tasks.append(task)  # добавляем в список (append добавляет элемент в конец списка)
-    return task
+# Функция для отметки задачи как выполненной
+def mark_task_complete(index):
+    tasks_list[index].stat = True  # Изменение атрибута — раздел "Классы и объекты"
+    print(f"Задача отмечена как выполненная!")  # F-строка — раздел 1
 
-
-# ОТМЕТКА ЗАДАЧИ КАК ВЫПОЛНЕННОЙ
-def mark_done(task_number):
-    # task_number — номер задачи в списке tasks (начиная с 1, как человеку удобнее)
-    tasks[task_number - 1].stat = True
-    return tasks[task_number - 1]
-
-
-# ВЫВОД ТЕКУЩИХ (НЕ ВЫПОЛНЕННЫХ) ЗАДАЧ
+# Функция для вывода невыполненных задач
 def show_current_tasks():
-    # оставляем только те задачи, у которых stat == False (фильтрация через if в цикле/списке) [web:32]
-    for i, task in enumerate(tasks, start=1):  # enumerate даёт и номер, и объект задачи [web:36]
-        if task.stat == False:
-            print(f"{i}. {task.description} (до {task.deadline})")
+    print("\n=== Текущие задачи ===")  # Вывод — раздел 1
+    for i, task in enumerate(tasks_list):  # Цикл for и enumerate — раздел 2
+        if task.stat == False:  # Условный оператор if — раздел 3
+            print(f"{i + 1}. {task.description} (Срок: {task.deadline})")  # F-строка — раздел 1
 
+# Пример использования:
+add_task("Выучить Python", "2026-02-15")
+add_task("Сделать домашнее задание", "2026-01-30")
+add_task("Прочитать книгу", "2026-03-01")
 
-add_task("Сдать отчет", "2026-02-10", False)
-add_task("Купить билеты", "2026-01-30", True)
-
-show_current_tasks()      # покажет только невыполненные
-mark_done(1)              # отметим 1-ю задачу выполненной
-show_current_tasks()      # теперь список невыполненных изменится
+show_current_tasks()
+mark_task_complete(0)
+show_current_tasks()  
