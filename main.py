@@ -15,15 +15,17 @@ def add_task(description, deadline):
 
 # Функция для отметки задачи как выполненной
 def mark_task_complete(index):
-    tasks_list[index].stat = True  # Изменение атрибута — раздел "Классы и объекты"
-    print(f"Задача отмечена как выполненная!")  # F-строка — раздел 1
+    task = tasks_list[index]  # Получаем задачу из списка — раздел 2 "Коллекции (списки)"
+    task.stat = True  # Изменение атрибута объекта — раздел "Классы и объекты"
+    print(f"Задача '{task.description}' выполнена!")  # F-строка — раздел 1
+
 
 # Функция для вывода невыполненных задач
 def show_current_tasks():
     print("\n=== Текущие задачи ===")  # Вывод — раздел 1
-    for i, task in enumerate(tasks_list):  # Цикл for и enumerate — раздел 2
+    for task in tasks_list:  # Цикл for для перебора списка — раздел 2
         if task.stat == False:  # Условный оператор if — раздел 3
-            print(f"{i + 1}. {task.description} (Срок: {task.deadline})")  # F-строка — раздел 1
+            print(f"{task.description} (Срок: {task.deadline})")  # F-строка — раздел 1
 
 # Пример использования:
 add_task("Выучить Python", "2026-02-15")
@@ -32,4 +34,4 @@ add_task("Прочитать книгу", "2026-03-01")
 
 show_current_tasks()
 mark_task_complete(0)
-show_current_tasks()  
+show_current_tasks()
