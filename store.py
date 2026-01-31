@@ -9,29 +9,29 @@ store1 = Store("Матрешка", "г. Москва, ул. Фестивальн
 store2 = Store("Алена", "г. Москва, ул. Смольная, д. 15", {"газировка": 12, "шоколад": 15})
 
 
-def add_items(name, adress, new_items):
-    if name == store1.name and adress == store1.adress:
+def add_items(name, new_items):
+    if name == store1.name:
         store = store1
     else:
         store = store2
     store.items.update(new_items)
 
-def remove_item(name, adress, key):
-    if name == store1.name and adress == store1.adress:
+def remove_item(name, key):
+    if name == store1.name:
         store = store1
     else:
         store = store2
     removed_value = store.items.pop(key, None)
 
-def up_items(name, adress, new_items):
+def up_items(name, new_items):
     if name == store1.name and adress == store1.adress:
         store = store1
     else:
         store = store2
     store.items.update(new_items)
 
-def get_item(name, adress, key):
-    if name == store1.name and adress == store1.adress:
+def get_item(name, key):
+    if name == store1.name:
         store = store1
     else:
         store = store2
@@ -39,17 +39,17 @@ def get_item(name, adress, key):
 
 
 
-add_items("Матрешка", "г. Москва, ул. Фестивальная, д. 14", {"творог": 6, "хлеб": 8})
+add_items("Матрешка",  {"творог": 6, "хлеб": 8})
 print(store1.items)
 
-ok = remove_item("Матрешка", "г. Москва, ул. Фестивальная, д. 14", "бананы")
+ok = remove_item("Матрешка",  "бананы")
 print(store1.items)
 
-add_items("Матрешка", "г. Москва, ул. Фестивальная, д. 14", {"творог": 50})
+add_items("Матрешка", {"творог": 50})
 print(store1.items)
 
-price = get_item("Матрешка", "г. Москва, ул. Фестивальная, д. 14", "вишня")
+price = get_item("Матрешка",  "вишня")
 print(price)
 
-price = get_item("Матрешка", "г. Москва, ул. Фестивальная, д. 14", "бананы")
+price = get_item("Матрешка",  "бананы")
 print(price)
