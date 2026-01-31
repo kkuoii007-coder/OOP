@@ -24,7 +24,7 @@ def remove_item(name, key):
     removed_value = store.items.pop(key, None)
 
 def up_items(name, new_items):
-    if name == store1.name and adress == store1.adress:
+    if name == store1.name:
         store = store1
     else:
         store = store2
